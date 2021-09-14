@@ -91,3 +91,13 @@ Convert map to comma separated key=value string
 {{- define "aws-load-balancer-controller.convert-map-to-csv" -}}
 {{- range $key, $value := . -}} {{ $key }}={{ $value }}, {{- end -}}
 {{- end -}}
+
+{{/*
+IngressClass parameters.
+*/}}
+{{- define "aws-load-balancer-controller.parameters" -}}
+  {{- if .Values.ingressClassResource.parameters -}}
+          parameters:
+{{ toYaml .Values.ingressClassResource.parameters | indent 4}}
+  {{ end }}
+{{- end -}}
